@@ -7,12 +7,15 @@ defmodule TrafficTest do
     {:ok, traffic_pid: traffic_pid}
   end
 
+  @tag :standard
   test "traffic lights change" do
     assert Traffic.get_lights() == {:red, :red}
     Traffic.change_lights()
     assert Traffic.get_lights() == {:red, :green}
   end
 
+  # Traffic lights change after 1 second.
+  @tag :standard
   test "cars pass" do
     {:ok, car1_pid} = Car.start(:A)
     {:ok, car2_pid} = Car.start(:B)
@@ -33,6 +36,7 @@ defmodule TrafficTest do
     assert Process.alive?(car1_pid) == false
   end
 
+  @tag :additional
   test "A stays green for 60 seconds, B stays green for 40 seconds" do
     # red-red for 1 second
     :timer.sleep(1_050)
