@@ -37,16 +37,33 @@ defmodule TrafficTest do
   end
 
   @tag :additional
-  test "A stays green for 60 seconds, B stays green for 40 seconds" do
+  test "A stays green for 6 seconds, B stays green for 4 seconds" do
     # red-red for 1 second
     :timer.sleep(1_050)
-    # red-green for 40 seconds
+
+    # red-green for 4 seconds + 1 second red-red
     assert Traffic.get_lights == {:red, :green}
-    :timer.sleep(41_050)
-    # red-red for 1 second and then green-red for 60 seconds
+    :timer.sleep(5_050)
+
+    # green-red for 6 seconds + 1 second red-red
     assert Traffic.get_lights == {:green, :red}
-    :timer.sleep(61_050)
-    # red-red for 1 second and then red-green for 40 seconds
+    :timer.sleep(7_050)
+
+    # red-green for 4 seconds + 1 second red-red
+    assert Traffic.get_lights == {:red, :green}
+    :timer.sleep(5_050)
+
+    # Add 1 car to queue B and 2 to queue A to change the sequence
+    {:ok, _pid} = Car.start(:A)
+    {:ok, _pid} = Car.start(:A)
+    {:ok, _pid} = Car.start(:B)
+
+    # green-red for 4 seconds + 1 second red-red
+    :timer.sleep(5_050)
+    assert Traffic.get_lights == {:green, :red}
+
+    # red-green for 6 seconds + 1 second red-red
+    :timer.sleep(7_050)
     assert Traffic.get_lights == {:red, :green}
   end
 end
