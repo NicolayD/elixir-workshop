@@ -4,19 +4,22 @@ defmodule TrafficTest do
 
   setup do
     {:ok, traffic_pid} = Traffic.start()
+    # In case someone needs the Traffic GenServer PID
     {:ok, traffic_pid: traffic_pid}
   end
 
-  @tag :standard
-  test "traffic lights change" do
+  @tag :base
+  test "traffic lights change", %{traffic_pid: traffic_pid} do
+    IO.inspect traffic_pid
+
     assert Traffic.get_lights() == {:red, :red}
     Traffic.change_lights()
     assert Traffic.get_lights() == {:red, :green}
   end
 
   # Traffic lights change after 1 second.
-  @tag :standard
-  test "cars pass" do
+  @tag :base
+  test "cars pass", %{traffic_pid: traffic_pid} do
     {:ok, car1_pid} = Car.start(:A)
     {:ok, car2_pid} = Car.start(:B)
 
@@ -37,7 +40,7 @@ defmodule TrafficTest do
   end
 
   @tag :additional
-  test "A stays green for 6 seconds, B stays green for 4 seconds" do
+  test "A stays green for 6 seconds, B stays green for 4 seconds", %{traffic_pid: traffic_pid} do
     # red-red for 1 second
     :timer.sleep(1_050)
 
@@ -66,4 +69,7 @@ defmodule TrafficTest do
     :timer.sleep(7_050)
     assert Traffic.get_lights == {:red, :green}
   end
+
+  # If you want, you can add tests for cases when a car runs out of fuel
+  # in the middle of the intersection. :)
 end
