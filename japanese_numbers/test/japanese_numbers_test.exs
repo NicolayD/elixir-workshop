@@ -3,7 +3,7 @@ defmodule JapaneseNumbersTest do
   doctest JapaneseNumbers
 
   test "calculates everything before man" do
-    assert JapaneseNumbers.calculates(10) == "juu"
+    assert JapaneseNumbers.calculate(10) == "juu"
     assert JapaneseNumbers.calculate(100) == "hyaku"
     assert JapaneseNumbers.calculate(1000) == "sen"
     assert JapaneseNumbers.calculate(110) == "hyaku juu"

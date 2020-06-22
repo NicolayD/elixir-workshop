@@ -1,6 +1,6 @@
 # Cipher
 
-Mix app with tasks to implement two simple substituon ciphers - the Caesar and Atbash ciphers.
+Mix app with tasks to implement two simple substituon ciphers - the [Caesar](https://en.wikipedia.org/wiki/Caesar_cipher) and [Atbash](https://en.wikipedia.org/wiki/Atbash) ciphers.
 
 To solve the exercises:
 
