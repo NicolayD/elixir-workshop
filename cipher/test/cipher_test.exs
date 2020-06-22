@@ -12,7 +12,7 @@ defmodule CipherTest do
   end
 
   describe "caesar/2" do
-    test "shifts all letters according" do
+    test "shifts all letters according to the specified shift number" do
       input = "Purple haze all in my brain"
       output = "Rwtrng jcbg cnn kp oa dtckp"
 
