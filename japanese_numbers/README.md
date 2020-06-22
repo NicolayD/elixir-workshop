@@ -6,6 +6,7 @@ Some of the rules are simplified - for example, here only `juu` (10), `hyaku` (1
 where it is normally done in the Japanese language.
 
 For reference: https://en.wikipedia.org/wiki/Japanese_numerals
+It is sufficient to only transform the numbers in the tests, there is no need to be able to implement this for any number.
 
 For instance, `JapaneseNumbers.calculate(100000)` should return `"10 man"`,
 and `JapaneseNumbers.calculate(1005000)` should return "100 man 5 sen".
