@@ -9,3 +9,10 @@ For reference: https://en.wikipedia.org/wiki/Japanese_numerals
 
 For instance, `JapaneseNumbers.calculate(100000)` should return `"10 man"`,
 and `JapaneseNumbers.calculate(1005000)` should return "100 man 5 sen".
+
+To solve the exercises:
+
+- clone the repository;
+- cd into the directory of this exercise;
+- run `mix test` to run the tests;
+- use the main module in the lib directory to implement solutions for the tests;
